@@ -9,7 +9,7 @@ int count_characters(FILE* file);
 int count_words(FILE* file);
 
 int main() {
-    char param[3]; // 参数
+    char param[2]; // 参数
     char file_name[MAX]; // 文件名
     scanf("%s %s", param, file_name);
 
@@ -35,32 +35,20 @@ int main() {
 }
 
 // 统计字符数
-int count_characters(FILE* file) {
-    int char_count = 0; // 字符个数
-    char ch;
-
-    while ((ch = fgetc(file)) != EOF) {
-        char_count++;
-    }
-
-    return char_count;
+int count_characters(File* file){
+     int totalCharacter;
+     if(fgetc(file) != EOF){
+         totalCharacter++;
+     }
+     return totalCharacter;
 }
 
-// 统计单词数
-int count_words(FILE* file) {
-    int word_count = 0; // 单词个数
-    int flag = 0; // 控制单词个数增加
-    char ch;
-
-    while ((ch = fgetc(file)) != EOF) {
-        if (ch == ' ' || ch == '\n' || ch == '\t' || ch == ',') {
-            flag = 0;
-        }
-        else if (flag == 0) {
-            flag = 1;
-            word_count++;
-        }
+int count_words(File* file){
+    int totalwords;
+    while(true){
+       if(fgetc(file) == " "||fgetc(file) == ","||fgetc(file) == "/t" ||fgetc(file) == "n"){
+         totalwords++;
+       }
     }
-
-    return word_count;
+    return totalwords;
 }
